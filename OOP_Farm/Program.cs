@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System.ComponentModel;
+using System.Configuration;
+using OOP_Farm.Models;
 namespace OOP_Farm
 {
     internal class Program
@@ -56,44 +58,31 @@ namespace OOP_Farm
                 );
             int sw = Convert.ToInt32(Console.ReadLine());
             Animals[] animals = { new Cow(), new Pig(), new Goat(), new Chicken() };
-
-            if (FarmProfile.balance >= animals[sw - 1].Price)
+            if (FarmProfile.balance >= animals[sw - 1].Price && FarmProfile.ListAnimals.Count <= 10)
             {
                 switch (sw)
                 {
                     case 1:
-                        if (FarmProfile.balance >= 5000)
-                        {
                             FarmProfile.balance -= 5000;
                             FarmProfile.ListAnimals.Add(new Cow());
-
                             Console.WriteLine("Покупка проведена успешно! Ваш баланс: {0}", FarmProfile.balance);
-                        }
                         break;
                     case 2:
-                        if (FarmProfile.balance >= 3500)
-                        {
                             FarmProfile.balance -= 3500;
                             FarmProfile.ListAnimals.Add(new Goat());
                             Console.WriteLine("Покупка проведена успешно! Ваш баланс: {0}", FarmProfile.balance);
-                        }
+                        
                         break;
                     case 3:
-                        if (FarmProfile.balance >= 2000)
-                        {
                             FarmProfile.balance -= 2000;
                             FarmProfile.ListAnimals.Add(new Pig());
                             Console.WriteLine("Покупка проведена успешно! Ваш баланс: {0}", FarmProfile.balance);
-                        }
+                        
                         break;
                     case 4:
-                        if (FarmProfile.balance >= 500)
-                        {
                             FarmProfile.balance -= 500;
                             FarmProfile.ListAnimals.Add(new Chicken());
                             Console.WriteLine("Покупка проведена успешно! Ваш баланс: {0}", FarmProfile.balance);
-                          
-                        }
                         break;
                     default:
                         Console.WriteLine("Указан неверный номер!");
@@ -107,7 +96,7 @@ namespace OOP_Farm
                 Console.WriteLine("Недостаточно средств!");
             }
 
-            Task.Delay(1000);
+            Task.Delay(1000).Wait();
             Console.Clear();
             MainMenu();
 
